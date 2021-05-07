@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  def index_pag_web
+  def index
     @articles = Article.all
   end
 end
