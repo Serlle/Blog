@@ -1,7 +1,6 @@
-<h1>Este es el articulo <%= @article.id %></h1>
-<p><%= @article.title %></p>
-<p><%= @article.body %></p>
-
+<h1>Este es el Articulo <%= @article.id %></h1>
+  <p><%= @article.title %></p>
+  <p><%= @article.body %></p>
 <ul>
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
   <li><%= link_to "Destroy", article_path(@article),
