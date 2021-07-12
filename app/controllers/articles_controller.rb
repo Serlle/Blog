@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  http_basic_authenticate_with name: "Serlle", password: "123", except: [:index, :show]
+  #http_basic_authenticate_with name: "Serlle", password: "123", except: [:index, :show]
+  before_action :authenticate_user!
 
   def index
     @articles = Article.all
@@ -7,6 +8,8 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.new
+    #@comment = @article.comments.build
   end
 
   def new

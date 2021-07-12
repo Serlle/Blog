@@ -1,22 +1,37 @@
-  <h1>
-    <%= @article.title %>
-  </h1>
+<div class="tabs">
+  <ul>
+    <li class="is-active"><%= link_to "Back", articles_path%></li>
+    <li><%= link_to "Edit Article", edit_article_path(@article)%></li>
+    <li><%= link_to "Delete Article", article_path(@article), method: :delete, data: { confirm: "Are you sure?"}%></li>
 
-  <p>
-    <strong>Information: </strong>
-    <%= @article.body %>
-  </p>
+  </ul>
+</div><br>
 
-  <p>
-    <%= link_to "Edit", edit_article_path(@article) %> <%="|" %>
-    <%= link_to "Delete", article_path(@article),
-                method: :delete,
-                data: { confirm: "Are you sure?" } %> <%="|" %>
-    <%= link_to "Back", "/articles" %>
-  </p>
+<div class="columns is-multiline is-mobile">
+  <div class="column is-half">
+    <div class="content is-normal box cursor-shadow container-with-shade">
+      <h1 class="title pl-5 pt-3 is-3">
+        <%= @article.title %>
+      </h1>
+      <p class="is-size-5 py-3 pl-5 mr-5">
+        <%= @article.body %>
+      </p>
+    </div>
 
-<h2>Comments</h2>
-  <%= render @article.comments%>
+  </div>
 
-<h2>Add a comment:</h2>
-<%= render 'comments/form'%>
+  <div class="column is-half">
+    <div class="column box cursor-shadow container-with-shade">
+      <h2 class="title is-4 pl-5 pt-3">Comments</h2>
+      <p class="is-size-5 has-text-weight-bold">
+        <%= render @article.comments%>
+      </p><br>
+    </div>
+    <div class="box cursor-shadow container-with-shade">
+      <p class="title is-4 pl-5 pt-3">
+        Add a comment
+        <%= render 'comments/form'%>
+      </p>
+    </div>
+  </div>
+</div>

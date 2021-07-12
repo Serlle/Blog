@@ -1,13 +1,18 @@
-<h1>Articles</h1>
+<div class="columns has-text-centered">
+  <div class="column is-full">
+    Our blog has <%= Article.public_count %> articles and counting!
+  </div>
+</div>
 
-Our blog has <%= Article.public_count %> articles and counting!
+<div class="columns">
+  <div class="column">
+    <%= render 'articles/table'%>
+  </div>
+</div>
 
-<ul>
-  <% @articles.each do |article| %>
-    <li>
-      <%= link_to "#{article.title} - [#{article.status}]", article %>
-    </li>
-  <% end %>
-</ul>
 
-<%= link_to "New Article", new_article_path %>
+<div class="columns is-full has-text-right">
+  <div class="column">
+      <%= link_to "New Article", new_article_path, class:"button is-info is-outlined"%>
+  </div>
+</div>

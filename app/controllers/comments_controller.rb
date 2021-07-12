@@ -3,8 +3,14 @@ class CommentsController < ApplicationController
 
   def create
     find_article
-    @comment = @article.comments.create(comment_params)
-    redirect_to article_path(@article)
+    @comment = Comment.new(comment_params.merge(article_id: @article.id))
+
+
+    if @comment.save
+      redirect_to article_path(@article)
+    else
+      render "articles/show"
+    end
   end
 
   def destroy
@@ -17,6 +23,7 @@ class CommentsController < ApplicationController
   def find_article
     @article = Article.find(params[:article_id])
   end
+
 
   private
   def comment_params

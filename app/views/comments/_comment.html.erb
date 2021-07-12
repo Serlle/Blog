@@ -1,15 +1,23 @@
-<p>
-  <strong>Commenter:</strong>
-  <%= comment.commenter %>
-</p>
+<div class="field border-top pt-5 pb-3 px-2 m-4">
+  <article class="media">
+    <figure class="media-left py-1">
+      <p class="image is-64x64">
+        <img src="https://bulma.io/images/placeholders/128x128.png">
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%= comment.commenter%></strong> <small>@commenter</small><br>
+          <%= comment.body %><br>
+          <small><a>Like</a> · <a>Reply</a> · <%= time_ago_in_words(comment.created_at)%></small>
+        </p>
+      </div>
+    </div>
 
-<p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-</p>
+    <div class="media-right">
+      <%= link_to 'Delete Comment', article_comment_path(comment.article, comment), method: :delete, data: { confirm: "Are you sure?"}, class: "delete"%>
+    </div>
 
-<p>
-  <%= link_to 'Delete Comment', [comment.article, comment],
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
-</p>
+  </article>
+</div>

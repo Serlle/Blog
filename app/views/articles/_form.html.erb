@@ -1,27 +1,41 @@
 <%= form_with model: article do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+<div class="field">
+  <%= form.label :title%>
+  <div class="control py-3">
+    <%= form.text_field :title, class:"input #{"is-danger" if article.errors.key?(:title)}", type: "text", placeholder: "Name"%>
     <% article.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
+    <p class="help is-danger"><%= message %></p>
     <% end %>
   </div>
+</div>
 
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %><br>
+<div class="field">
+  <%= form.label :body%>
+  <div class="control py-3">
+    <%= form.text_area :body, class: "textarea #{"is-danger" if article.errors.key?(:body)}", placeholder: "Write a minimum of 10 characters"%>
     <% article.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
+    <p class="help is-danger"><%= message %></p>
     <% end %>
   </div>
+</div>
 
-  <div>
-    <%= form.submit %>
+<%= form.label :status%>
+<div class="field has-addons py-3">
+  <div class="control is-expanded">
+    <div class="select is-fullwidth">
+      <%= form.select :status, Article::VALID_STATUSES.map {|status| [status.capitalize, status] }, selected: 'Public' %>
+    </div>
   </div>
+</div>
 
-  <div>
-    <%= form.label :status %><br>
-    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
-  </div>
+<div class="field has-addons">
+  <p class="control">
+    <%= form.submit class: "button is-info is-outlined", type: "submit"%>
+  </p>
+
+  <p class="control">
+    <%= link_to "Back", articles_path, class: "button is-info is-outlined"%>
+  </p>
+</div>
 
 <% end %>
