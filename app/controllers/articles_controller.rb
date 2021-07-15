@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   #http_basic_authenticate_with name: "Serlle", password: "123", except: [:index, :show]
-  prepend_after_action :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     @articles = Article.all
