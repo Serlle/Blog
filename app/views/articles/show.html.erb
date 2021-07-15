@@ -1,22 +1,39 @@
-  <h1>
-    <%= @article.title %>
-  </h1>
+<div class="columns is-multiline is-mobile">
+  <div class="column is-full">
+    <div class="card cursor-shadow container-with-shade">
+      <header class="card-header">
+        <div class="card-header-title title m-3">
+          <%= @article.title %>
+        </div>
+      </header>
 
-  <p>
-    <strong>Information: </strong>
-    <%= @article.body %>
-  </p>
+      <div class="card-content">
+        <div class="content is-size-5 m-3">
+            <%= @article.body %><br><br>
+            <a>Like</a> · <%= time_ago_in_words(@article.created_at)%>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <%= link_to "Back", articles_path, class: "card-footer-item button is-info is-inverted"%>
+        <%= link_to "Edit", edit_article_path(@article), class: "card-footer-item button is-info is-inverted"%>
+        <%= link_to "Delete", article_path(@article), method: :delete, data: { confirm: "Are you sure?"}, class: "card-footer-item button is-info is-inverted"%>
 
-  <p>
-    <%= link_to "Edit", edit_article_path(@article) %> <%="|" %>
-    <%= link_to "Delete", article_path(@article),
-                method: :delete,
-                data: { confirm: "Are you sure?" } %> <%="|" %>
-    <%= link_to "Back", "/articles" %>
-  </p>
+      </footer>
+    </div>
+  </div>
 
-<h2>Comments</h2>
-  <%= render @article.comments%>
-
-<h2>Add a comment:</h2>
-<%= render 'comments/form'%>
+  <div class="column is-full">
+    <div class="column box cursor-shadow container-with-shade">
+      <h2 class="title is-4 pl-5 pt-3">Comments</h2>
+      <p class="is-size-5 has-text-weight-bold">
+        <%= render @article.comments%>
+      </p><br>
+    </div>
+    <div class="box cursor-shadow container-with-shade">
+      <p class="title is-4 pl-5 pt-3">
+        Add a comment
+        <%= render 'comments/form'%>
+      </p>
+    </div>
+  </div>
+</div>

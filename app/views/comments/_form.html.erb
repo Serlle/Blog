@@ -1,22 +1,44 @@
-<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+<%= form_with model: [@article, @comment] do |form| %>
 
-  <p>
-    <%= form.label :commenter, "Commenter:" %><br>
-    <%= form.text_field :commenter %>
-  </p>
+<% if @comment.errors.any? %>
+<div class="notification is-danger ml-5 mr-5">
+  UPS!! It seems that something went wrong.
+</div>
+<% end %>
 
-  <p>
-    <%= form.label :body, "Comment:" %><br>
-    <%= form.text_area :body %>
-  </p>
+<div class="field pl-5 pt-3">
+  <%= form.label :commenter%>
+  <div class="control pt-3 mr-5">
+    <%= form.text_field :commenter, class:"input #{"is-danger" if @comment.errors.key?(:commenter)}", type: "text", placeholder: "Name"%>
+    <% @comment.errors.full_messages_for(:commenter).each do |message| %>
+    <p class="help is-danger"><%= message %></p>
+    <% end %>
+  </div>
+</div>
 
-  <p>
-    <%= form.submit %>
-  </p>
+<div class="field pl-5 pt-3">
+  <%= form.label :body%>
+  <div class="control pt-3 mr-5">
+    <%= form.text_area :body, class: "textarea #{"is-danger" if @comment.errors.key?(:body)}", placeholder: "Write a minimum of 10 characters"%>
+    <% @comment.errors.full_messages_for(:body).each do |message| %>
+    <p class="help is-danger"><%= message %></p>
+    <% end %>
+  </div>
+</div>
 
-  <p>
-    <%= form.label :status %><br>
-    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
-  </p>
+<div class="field pl-5 pt-3">
+  <%= form.label :status%>
+</div>
 
-  <% end %>
+<div class="field has-addons pl-5">
+  <div class="control is-expanded">
+    <div class="select is-fullwidth">
+      <%= form.select :status, Comment::VALID_STATUSES.map {|status| [status.capitalize, status] }, selected: 'Public' %>
+    </div>
+  </div>
+  <div class="control is-pulled-right mr-5">
+    <%= form.submit class: "button is-info is-outlined", type: "submit"%>
+  </div>
+</div>
+
+<% end %>

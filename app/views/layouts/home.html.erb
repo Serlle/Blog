@@ -28,15 +28,25 @@
 
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  
+
 </head>
 
 <body>
-  <%= render 'shared/navegation'%>
-  <section class= "section">
-    <div class="container">
+  <section class="hero is-fullheight is-default">
+    <div class="hero-head">
+      <%= render 'shared/navegation'%>
+    </div>
+
+    <div class="hero-body">
       <%= yield %>
     </div>
+
+    <div class="hero is-info is-medium is-align-items-center has-text-centered">
+      <div class="hero-body">
+        <%= render 'home/pie'%>
+      </div>
+    </div>
   </section>
+
 </body>
 </html>
