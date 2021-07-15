@@ -3,6 +3,7 @@
 // @import "tailwindcss/utilities";
 
 @import "~bulma/bulma";
+@import "~stylesheets/animation";
 
 .border-top{
   border-top: 2px solid #f5f5f5;
@@ -16,4 +17,8 @@
 
 .container-with-shade:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.pb-edit {
+    padding-bottom: 18rem !important;
 }

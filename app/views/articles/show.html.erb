@@ -1,26 +1,28 @@
-<div class="tabs">
-  <ul>
-    <li class="is-active"><%= link_to "Back", articles_path%></li>
-    <li><%= link_to "Edit Article", edit_article_path(@article)%></li>
-    <li><%= link_to "Delete Article", article_path(@article), method: :delete, data: { confirm: "Are you sure?"}%></li>
-
-  </ul>
-</div><br>
-
 <div class="columns is-multiline is-mobile">
-  <div class="column is-half">
-    <div class="content is-normal box cursor-shadow container-with-shade">
-      <h1 class="title pl-5 pt-3 is-3">
-        <%= @article.title %>
-      </h1>
-      <p class="is-size-5 py-3 pl-5 mr-5">
-        <%= @article.body %>
-      </p>
-    </div>
+  <div class="column is-full">
+    <div class="card cursor-shadow container-with-shade">
+      <header class="card-header">
+        <div class="card-header-title title m-3">
+          <%= @article.title %>
+        </div>
+      </header>
 
+      <div class="card-content">
+        <div class="content is-size-5 m-3">
+            <%= @article.body %><br><br>
+            <a>Like</a> · <%= time_ago_in_words(@article.created_at)%>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <%= link_to "Back", articles_path, class: "card-footer-item button is-info is-inverted"%>
+        <%= link_to "Edit", edit_article_path(@article), class: "card-footer-item button is-info is-inverted"%>
+        <%= link_to "Delete", article_path(@article), method: :delete, data: { confirm: "Are you sure?"}, class: "card-footer-item button is-info is-inverted"%>
+
+      </footer>
+    </div>
   </div>
 
-  <div class="column is-half">
+  <div class="column is-full">
     <div class="column box cursor-shadow container-with-shade">
       <h2 class="title is-4 pl-5 pt-3">Comments</h2>
       <p class="is-size-5 has-text-weight-bold">

@@ -1,5 +1,5 @@
 <nav class="navbar m-4">
-  <div class="navbar-menu py-4">
+  <div class="navbar-menu pr-3">
     <button class="button is-link is-inverted has-text-black">
       <span class="icon is-large">
         <i class="fa fa-home fa-2x"></i>
@@ -9,8 +9,13 @@
   </div>
   <div class="navbar-end">
     <div class="navbar-item">
+      <% if user_signed_in?%>
+      <span class= "button is-info is-rounded is-size-5">User: <%= current_user.email%></span>
+      <%= button_to "Sign off", destroy_user_session_path, method: :delete, class: "button is-rounded m-2 is-size-5"%>
+      <%else%>
       <%= link_to "Sign Up", new_user_registration_path, class: "button is-info is-rounded is-size-5"%>
       <%= link_to "Log In", new_user_session_path, class: "button is-rounded m-2 is-size-5"%>
+      <% end %>
     </div>
   </div>
 </nav>

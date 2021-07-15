@@ -1,19 +1,31 @@
-<div class="columns is-vcentered has-text-centered">
-  <div class="column is-5">
-    <figure class="image is-4by3">
-      <img src="https://picsum.photos/800/600/?random" alt="Description">
-    </figure>
-  </div>
-  <div class="column is-6 is-offset-1">
-    <h1 class="title is-2">
-      Welcome to my Personal Blog!
-    </h1>
-    <h2 class="subtitle is-4">
-      In this personal blog you will find several articles about sports, news, culture and everything you can imagine!
-    </h2>
-    <br>
-    <p class="has-text-centered">
-      <%= link_to "Vew Article", articles_path, class:"button is-medium is-info is-outlined"%>
-    </p>
+<div class="container has-text-centered">
+  <div class="columns is-vcentered pb-edit">
+    <div class="column is-5">
+      <figure class="image is-4by3">
+        <img src="https://picsum.photos/800/600/?random" alt="Description">
+      </figure>
+    </div>
+    <div class="column is-6 is-offset-1">
+      <h1 class="title is-2">
+        Welcome to my Personal Blog!
+      </h1>
+      <h2 class="subtitle is-4">
+        In this personal blog you will find several articles about sports, news, culture and everything you can imagine!
+      </h2>
+      <br>
+      <p class="has-text-centered">
+        <%= link_to "Vew Article", articles_path, class:"button is-medium is-info is-outlined"%>
+      </p>
+      <br>
+
+      <p>
+          <%= render 'home/animation'%>
+      </p>
+
+
+
+
+
+    </div>
   </div>
 </div>
